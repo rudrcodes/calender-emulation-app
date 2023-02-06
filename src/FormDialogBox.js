@@ -11,7 +11,7 @@ import { addData, deleteData, updateData } from "./Features/data";
 import { addDoc, deleteDoc, doc } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
-import './formdialogbox.css'
+import "./formdialogbox.css";
 export default function FormDialogBox(props) {
   const initialMeetState = {
     meetName: "",
@@ -43,6 +43,15 @@ export default function FormDialogBox(props) {
       return;
     }
     // alert("okay");
+    if (
+      !meetingData.meetName ||
+      !meetingData.meetStartTime ||
+      !meetingData.meetEndTime ||
+      !meetingData.description
+    ) {
+      alert("Some Fields are empty can't add meeting");
+      return;
+    }
     await addDoc(props.usersCollectionRef, {
       // id: data[data.length - 1] ? data[data.length - 1].id + 1 : 0,
       date: props.value.toString(),
@@ -84,14 +93,14 @@ export default function FormDialogBox(props) {
     handleClickOpen();
   };
   const deleteMeet = async (dataId) => {
-    const userDoc=doc(db,'users',dataId);
-    await deleteDoc(userDoc)
+    const userDoc = doc(db, "users", dataId);
+    await deleteDoc(userDoc);
 
     // dispatch(deleteData(dataId));
     // localStorage.key(userId);
     // console.log(count);
   };
-  const updateMeet = async(dataId) => {
+  const updateMeet = async (dataId) => {
     // dispatch(deleteData(dataId));
     // localStorage.key(userId);
     // console.log(count);
@@ -173,21 +182,23 @@ export default function FormDialogBox(props) {
         </DialogActions>
       </Dialog>
       <div className="meetingContainer">
-
-      {users.map((user) => {
-        return (
-          <div key={user.id} className="newUserBack">
-            <p>Meet name : {user.meetName}</p>
-            <p>meetStartTime : {user.meetStartTime}</p>
-            <p>meetEndTime : {user.meetEndTime}</p>
-            <p>Meet description : {user.description}</p>
-            <button onClick={() => deleteMeet(user.id)}>Delete Meeting</button>
-            <button onClick={() => updateMeet(user.id)}>Update Meeting</button>
-          </div>
-        );
-      })}
+        {users.map((user) => {
+          return (
+            <div key={user.id} className="newUserBack">
+              <p>Meet name : {user.meetName}</p>
+              <p>meetStartTime : {user.meetStartTime}</p>
+              <p>meetEndTime : {user.meetEndTime}</p>
+              <p>Meet description : {user.description}</p>
+              <button onClick={() => deleteMeet(user.id)}>
+                Delete Meeting
+              </button>
+              <button onClick={() => updateMeet(user.id)}>
+                Update Meeting
+              </button>
+            </div>
+          );
+        })}
       </div>
-
     </div>
   );
 }
