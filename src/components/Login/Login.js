@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import "./Login.css";
-export const Login = () => {
+export const Login = (props) => {
   const initialState = {
     email: "",
     pass: "",
@@ -29,6 +29,7 @@ export const Login = () => {
           userPass: values.pass,
         };
         localStorage.setItem("user", JSON.stringify(userEmailAndPass));
+        props.setUserInfofromLoginComp(userEmailAndPass);
         setSubmitButtonDisabled(false);
         navigate("/calender");
       })

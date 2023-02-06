@@ -220,28 +220,29 @@ import { ProtectedRoute } from "./Pages/ProtectedRoute";
 import { Calender } from "./components/MainCalender/Calender";
 function App() {
   const [userName, setUserName] = useState("");
-  const [userEmail,setUserEmail]=useState(null);
+  const [userEmail, setUserEmail] = useState(null);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log(user.email)
+        console.log(user.email);
         setUserName(user.displayName);
-        setUserEmail(user.email)
+        setUserEmail(user.email);
       } else setUserName("");
     });
   }, []);
+  const [userInfofromLoginComp, setUserInfofromLoginComp] = useState({});
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home name={userName} />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login  setUserInfofromLoginComp={setUserInfofromLoginComp}/>} />
           <Route path="/signup" element={<Signup />} />
           <Route
             path="/calender"
             element={
               <ProtectedRoute user={userEmail}>
-                <Calender user={userEmail} myVar="rudra" />
+                <Calender user={userEmail} myVar="rudra" userInfofromLoginComp={userInfofromLoginComp}/>
               </ProtectedRoute>
             }
           />

@@ -19,7 +19,9 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
-export const Calender = () => {
+
+
+export const Calender = (props) => {
   const [users, setUsers] = useState([]);
   const usersCollectionRef = collection(db, "users");
   useEffect(() => {
@@ -124,7 +126,12 @@ export const Calender = () => {
   };
   return (
     <div className="App">
-      <button onClick={signOutUser}>sign Out</button>
+      <div className="calender_signOut">
+
+      <h3>User Email : {props.userInfofromLoginComp.userEmail}</h3>
+      {/* <h3>UserPass : {props.userInfofromLoginComp.userPass}</h3> */}
+      <button onClick={signOutUser} >sign Out</button>
+      </div>
 
       <div className="calenderContainer">
         <Calendar

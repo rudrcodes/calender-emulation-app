@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 .react-calendar {
     width: 80vw;
     /* height: 500px; */
@@ -185,9 +187,35 @@ abbr[title] {
     display: flex;
     justify-content: center;
     /* align-items: center; */
-    background-color: purple;
-    padding: 10px;
+    background-color: #a4a4a4;
+    padding: 40px;
     margin: 5px;
     border-radius: 10px;
+    color: #000;
+}
+
+.calender_signOut button {
+    padding: 10px 20px;
+    background-color: #2E2C2F;
+    font-weight: bolder;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 250ms ease-in;
+    color:#fff;
+    text-transform: capitalize;
+}
+.calender_signOut button:hover {
+background-color: #665f69 ;
+}
+
+.calender_signOut {
+    /* position: absolute;
+    right: 10px; */
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.calender_signOut h3 {
     color: #000;
 }
