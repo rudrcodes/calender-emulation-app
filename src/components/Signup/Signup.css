@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+button:disabled {
+    background-color: gray !important;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.Signup_cont {
+    font-family: 'Poppins', sans-serif;
+    /* background-color: #fbfbf9; */
+    background-color: #444;
+    background-color: #011C27;
+
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.backtohome {
+    color: rgb(255, 115, 0);
+    text-decoration: underline;
+}
+
+.backtohome:hover {
+    text-decoration: none;
+
+    color: #ffffff
+
+}
+
+a {
+    color: #444;
+    color: #fbfbf9;
+    text-decoration: none;
+    font-size: 2rem;
+    transition: all 250ms ease-in;
+    /* background-color: blue; */
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin: 20px;
+}
+
+a:hover {
+    text-decoration: underline;
+
+    color: #000
+}
+
+.Signup_Form {
+    background-color: #011C27;
+    background-color: #444;
+
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.Signup_Form h1 {
+    margin-bottom: 10px;
+    font-size: 3rem;
+}
+
+.Signup_Form label {
+    /* margin: 10px; */
+    font-size: 1.3rem;
+    font-weight: bolder;
+
+}
+
+.Signup_Form input {
+    /* margin: 10px; */
+    font-size: 1.3rem;
+    /* border-radius: 10px; */
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid #fff;
+    padding: 9px;
+}
+
+.Signup_Form input::placeholder {
+    color: grey;
+}
+
+.Signup_Form button {
+    padding: 10px 20px;
+    background-color: #ED1C24;
+    font-weight: bolder;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 250ms ease-in;
+
+}
+
+.Signup_Form button:hover {
+    background-color: #000;
+    color: #ED1C24;
+
+}
