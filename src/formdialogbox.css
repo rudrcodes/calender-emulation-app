@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+
+}
+
 .formdialogbox_addMeet {
     padding: 10px 15px;
     /* border: 2px solid black; */
@@ -11,11 +18,13 @@
     transition: all 250ms ease-in;
 
 }
-.formdialogbox_addMeet:hover{
+
+.formdialogbox_addMeet:hover {
     background-color: #073b8a;
 
 }
-.main-cont{
+
+.main-cont {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,6 +32,7 @@
     flex-wrap: wrap;
     /* background-color: red; */
 }
+
 .newUserBack {
     background-color: #C6C5B9;
     padding: 20px;
@@ -32,7 +42,8 @@
     color: #000;
     font-weight: bolder;
 }
-.meetingContainer{
+
+.meetingContainer {
     margin-top: 20px;
     width: 80vw;
     display: flex;
@@ -41,6 +52,7 @@
     flex-wrap: wrap;
     /* flex-direction: column; */
 }
+
 .newUserBack button {
     padding: 6px;
     border: none;
@@ -50,8 +62,38 @@
     border-radius: 6px;
     transition: all 250ms ease-in;
     margin: 6px;
+    cursor: pointer;
 }
 
 .newUserBack button:hover {
     background-color: #021839;
+}
+
+.form {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form_input {
+    padding: 6px;
+    /* color: red; */
+    border-radius: 7px;
+    border: none;
+
+}
+
+.form button {
+    transition: all 250ms ease-in;
+
+}
+
+.form button:hover {
+    background-color: #021839;
+
+}
+.updateHead{
+    color: #000;
 }

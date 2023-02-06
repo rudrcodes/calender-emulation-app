@@ -9,7 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useSelector, useDispatch } from "react-redux";
 import { addData, deleteData, updateData } from "./Features/data";
 import { addDoc, deleteDoc, doc } from "firebase/firestore";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import "./formdialogbox.css";
 export default function FormDialogBox(props) {
@@ -32,6 +32,8 @@ export default function FormDialogBox(props) {
   }, [users]);
 
   const [meetingData, setMeetingData] = useState(initialMeetState);
+  const [updatedmeetingData, setUpdatedmeetingData] =
+    useState(initialMeetState);
   const dispatch = useDispatch();
   const data = useSelector((storeState) => storeState.data.data);
   const addDataToFirebase = async (e) => {
@@ -101,15 +103,37 @@ export default function FormDialogBox(props) {
   const deleteMeet = async (dataId) => {
     const userDoc = doc(db, "users", dataId);
     await deleteDoc(userDoc);
-
-    // dispatch(deleteData(dataId));
-    // localStorage.key(userId);
-    // console.log(count);
   };
-  const updateMeet = async (dataId) => {
-    // dispatch(deleteData(dataId));
-    // localStorage.key(userId);
-    // console.log(count);
+  const updateMeetName = async (e, dataId) => {
+    e.preventDefault();
+    if (!updatedmeetingData.meetName) return;
+    const userDoc = doc(db, "users", dataId);
+    const newField = { meetName: updatedmeetingData.meetName };
+    await updateDoc(userDoc, newField);
+  };
+  const updateMeetStartTime = async (e, dataId) => {
+    e.preventDefault();
+    if (!updatedmeetingData.meetStartTime) return;
+
+    const userDoc = doc(db, "users", dataId);
+    const newField = { meetStartTime: updatedmeetingData.meetStartTime };
+    await updateDoc(userDoc, newField);
+  };
+  const updateMeetEndTime = async (e, dataId) => {
+    e.preventDefault();
+    if (!updatedmeetingData.meetEndTime) return;
+
+    const userDoc = doc(db, "users", dataId);
+    const newField = { meetEndTime: updatedmeetingData.meetEndTime };
+    await updateDoc(userDoc, newField);
+  };
+  const updateMeetDescription = async (e, dataId) => {
+    e.preventDefault();
+    if (!updatedmeetingData.description) return;
+
+    const userDoc = doc(db, "users", dataId);
+    const newField = { description: updatedmeetingData.description };
+    await updateDoc(userDoc, newField);
   };
   return (
     <div className="main-cont">
@@ -121,7 +145,7 @@ export default function FormDialogBox(props) {
         <DialogTitle>Meeting Details</DialogTitle>
         <DialogContent>
           <DialogContentText>Enter Meet Details</DialogContentText>
-          <label>Meet name</label>
+          <label>Meeting Title</label>
           <TextField
             autoFocus
             margin="dense"
@@ -165,7 +189,7 @@ export default function FormDialogBox(props) {
               }))
             }
           />
-          <label>Meet Description</label>
+          <label>Meeting Description</label>
           <TextField
             autoFocus
             margin="dense"
@@ -191,16 +215,82 @@ export default function FormDialogBox(props) {
         {users.map((user) => {
           return (
             <div key={user.id} className="newUserBack">
-              <p>Meet name : {user.meetName}</p>
+              <p>Meeting Title : {user.meetName}</p>
               <p>meetStartTime : {user.meetStartTime}</p>
               <p>meetEndTime : {user.meetEndTime}</p>
               <p>Meet description : {user.description}</p>
               <button onClick={() => deleteMeet(user.id)}>
                 Delete Meeting
               </button>
-              <button onClick={() => updateMeet(user.id)}>
-                Update Meeting
-              </button>
+              <h3 className="updateHead">
+                {"->"} Enter Details here to update the meeting {"<-"}{" "}
+              </h3>
+              <form>
+                <div>
+                  <input
+                    className="form_input"
+                    placeholder="Enter new Meeting name"
+                    type="text"
+                    onChange={(e) =>
+                      setUpdatedmeetingData((prev) => ({
+                        ...prev,
+                        meetName: e.target.value,
+                      }))
+                    }
+                  />
+                  <button onClick={(e) => updateMeetName(e, user.id)}>
+                    Update Meeting name
+                  </button>
+                </div>
+                <div>
+                  <input
+                    className="form_input"
+                    placeholder="Enter new Meeting Start Time"
+                    type="time"
+                    onChange={(e) =>
+                      setUpdatedmeetingData((prev) => ({
+                        ...prev,
+                        meetStartTime: e.target.value,
+                      }))
+                    }
+                  />
+                  <button onClick={(e) => updateMeetStartTime(e, user.id)}>
+                    Update Meeting Start Time
+                  </button>
+                </div>
+                <div>
+                  <input
+                    className="form_input"
+                    placeholder="Enter new Meeting End Time"
+                    type="time"
+                    onChange={(e) =>
+                      setUpdatedmeetingData((prev) => ({
+                        ...prev,
+                        meetEndTime: e.target.value,
+                      }))
+                    }
+                  />
+                  <button onClick={(e) => updateMeetEndTime(e, user.id)}>
+                    Update Meeting End Time
+                  </button>
+                </div>
+                <div>
+                  <input
+                    className="form_input"
+                    placeholder="Enter new Meeting Description"
+                    type="text"
+                    onChange={(e) =>
+                      setUpdatedmeetingData((prev) => ({
+                        ...prev,
+                        description: e.target.value,
+                      }))
+                    }
+                  />
+                  <button onClick={(e) => updateMeetDescription(e, user.id)}>
+                    Update Meeting Description
+                  </button>
+                </div>
+              </form>
             </div>
           );
         })}
