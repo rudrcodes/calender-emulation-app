@@ -14,6 +14,7 @@ import { db } from "./firebase";
 import "./formdialogbox.css";
 export default function FormDialogBox(props) {
   const initialMeetState = {
+    meetDate: "",
     meetName: "",
     meetStartTime: "",
     meetEndTime: "",
@@ -46,6 +47,7 @@ export default function FormDialogBox(props) {
     // }
     // alert("okay");
     if (
+      // !meetingData.meetDate ||
       !meetingData.meetName ||
       !meetingData.meetStartTime ||
       !meetingData.meetEndTime ||
@@ -57,12 +59,14 @@ export default function FormDialogBox(props) {
     await addDoc(props.usersCollectionRef, {
       // id: data[data.length - 1] ? data[data.length - 1].id + 1 : 0,
       date: props.value.toString(),
+      meetDate: props.value.toString(),
       meetName: meetingData.meetName,
       meetStartTime: meetingData.meetStartTime,
       meetEndTime: meetingData.meetEndTime,
       description: meetingData.description,
     });
     setMeetingData({
+      meetDate: "",
       meetName: "",
       meetStartTime: "",
       meetEndTime: "",
@@ -215,6 +219,7 @@ export default function FormDialogBox(props) {
         {users.map((user) => {
           return (
             <div key={user.id} className="newUserBack">
+              <p>Meeting Date : {user.meetDate}</p>
               <p>Meeting Title : {user.meetName}</p>
               <p>meetStartTime : {user.meetStartTime}</p>
               <p>meetEndTime : {user.meetEndTime}</p>
@@ -226,6 +231,22 @@ export default function FormDialogBox(props) {
                 {"->"} Enter Details here to update the meeting {"<-"}{" "}
               </h3>
               <form>
+                <div>
+                  <input
+                    className="form_input"
+                    // placeholder="Enter new Meeting name"
+                    type="date"
+                    onChange={(e) =>
+                      setUpdatedmeetingData((prev) => ({
+                        ...prev,
+                        meetDate: e.target.value,
+                      }))
+                    }
+                  />
+                  <button onClick={(e) => updateMeetName(e, user.id)}>
+                    Update Meeting Date
+                  </button>
+                </div>
                 <div>
                   <input
                     className="form_input"
