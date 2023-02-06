@@ -11,7 +11,7 @@ import { addData, deleteData, updateData } from "./Features/data";
 import { addDoc, deleteDoc, doc } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
-
+import './formdialogbox.css'
 export default function FormDialogBox(props) {
   const initialMeetState = {
     meetName: "",
@@ -19,15 +19,7 @@ export default function FormDialogBox(props) {
     meetEndTime: "",
     description: "",
   };
-  const newUserBack = {
-    backgroundColor: "purple",
-    padding: "10px",
-    margin: "5px",
-    borderRadius: "10px",
-    maxWidth: "400px",
-    color: "#000",
-    fontWeight:"bolder"
-  };
+
   const [users, setUsers] = useState([]);
   const usersCollectionRef = collection(db, "users");
   useEffect(() => {
@@ -105,9 +97,9 @@ export default function FormDialogBox(props) {
     // console.log(count);
   };
   return (
-    <div>
-      <h1>DATE DATA : </h1>
-      <button onClick={addDataMethod}>
+    <div className="main-cont">
+      <h1>All the Meetings are mentioned here : </h1>
+      <button onClick={addDataMethod} className="formdialogbox_addMeet">
         Add Meeting for : {props.value.toDateString()}{" "}
       </button>
       <Dialog open={open} onClose={handleClose}>
@@ -180,9 +172,11 @@ export default function FormDialogBox(props) {
           {/* <Button onClick={scheduleMeet}>Schedule Meeting</Button> */}
         </DialogActions>
       </Dialog>
+      <div className="meetingContainer">
+
       {users.map((user) => {
         return (
-          <div key={user.id} style={newUserBack}>
+          <div key={user.id} className="newUserBack">
             <p>Meet name : {user.meetName}</p>
             <p>meetStartTime : {user.meetStartTime}</p>
             <p>meetEndTime : {user.meetEndTime}</p>
@@ -192,6 +186,8 @@ export default function FormDialogBox(props) {
           </div>
         );
       })}
+      </div>
+
     </div>
   );
 }
