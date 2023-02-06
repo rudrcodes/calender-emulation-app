@@ -108,6 +108,13 @@ export default function FormDialogBox(props) {
     const userDoc = doc(db, "users", dataId);
     await deleteDoc(userDoc);
   };
+  const updateMeetDate = async (e, dataId) => {
+    e.preventDefault();
+    if (!updatedmeetingData.meetDate) return;
+    const userDoc = doc(db, "users", dataId);
+    const newField = { meetDate: updatedmeetingData.meetDate };
+    await updateDoc(userDoc, newField);
+  };
   const updateMeetName = async (e, dataId) => {
     e.preventDefault();
     if (!updatedmeetingData.meetName) return;
@@ -118,7 +125,6 @@ export default function FormDialogBox(props) {
   const updateMeetStartTime = async (e, dataId) => {
     e.preventDefault();
     if (!updatedmeetingData.meetStartTime) return;
-
     const userDoc = doc(db, "users", dataId);
     const newField = { meetStartTime: updatedmeetingData.meetStartTime };
     await updateDoc(userDoc, newField);
@@ -126,7 +132,6 @@ export default function FormDialogBox(props) {
   const updateMeetEndTime = async (e, dataId) => {
     e.preventDefault();
     if (!updatedmeetingData.meetEndTime) return;
-
     const userDoc = doc(db, "users", dataId);
     const newField = { meetEndTime: updatedmeetingData.meetEndTime };
     await updateDoc(userDoc, newField);
@@ -134,7 +139,6 @@ export default function FormDialogBox(props) {
   const updateMeetDescription = async (e, dataId) => {
     e.preventDefault();
     if (!updatedmeetingData.description) return;
-
     const userDoc = doc(db, "users", dataId);
     const newField = { description: updatedmeetingData.description };
     await updateDoc(userDoc, newField);
@@ -243,7 +247,7 @@ export default function FormDialogBox(props) {
                       }))
                     }
                   />
-                  <button onClick={(e) => updateMeetName(e, user.id)}>
+                  <button onClick={(e) => updateMeetDate(e, user.id)}>
                     Update Meeting Date
                   </button>
                 </div>
