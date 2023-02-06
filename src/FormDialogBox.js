@@ -60,6 +60,12 @@ export default function FormDialogBox(props) {
       meetEndTime: meetingData.meetEndTime,
       description: meetingData.description,
     });
+    setMeetingData({
+      meetName: "",
+      meetStartTime: "",
+      meetEndTime: "",
+      description: "",
+    });
   };
 
   const [open, setOpen] = React.useState(false);
