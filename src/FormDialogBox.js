@@ -39,10 +39,10 @@ export default function FormDialogBox(props) {
     setOpen(false);
     // setMeetingData();
     if (meetingData.meetStartTime > meetingData.meetEndTime) {
-      alert("not okay");
+      alert("Enter correct start and end time");
       return;
     }
-    alert("okay");
+    // alert("okay");
     await addDoc(props.usersCollectionRef, {
       // id: data[data.length - 1] ? data[data.length - 1].id + 1 : 0,
       date: props.value.toString(),
