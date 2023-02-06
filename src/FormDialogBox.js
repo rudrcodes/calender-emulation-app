@@ -38,10 +38,10 @@ export default function FormDialogBox(props) {
     e.preventDefault();
     setOpen(false);
     // setMeetingData();
-    if (meetingData.meetStartTime > meetingData.meetEndTime) {
-      alert("Enter correct start and end time");
-      return;
-    }
+    // if (meetingData.meetStartTime > meetingData.meetEndTime) {
+    //   alert("Enter correct start and end time");
+    //   return;
+    // }
     // alert("okay");
     if (
       !meetingData.meetName ||
