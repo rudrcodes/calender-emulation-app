@@ -1,0 +1,55 @@
+.formdialogbox_addMeet {
+    padding: 10px 15px;
+    /* border: 2px solid black; */
+    border: none;
+    background-color: #001D4A;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 250ms ease-in;
+
+}
+.formdialogbox_addMeet:hover{
+    background-color: #073b8a;
+
+}
+.main-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.newUserBack {
+    background-color: #C6C5B9;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    width: "400px";
+    color: #000;
+    font-weight: bolder;
+}
+.meetingContainer{
+    margin-top: 20px;
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.newUserBack button {
+    padding: 6px;
+    border: none;
+    background-color: #001D4A;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 6px;
+    transition: all 250ms ease-in;
+}
+
+.newUserBack button:hover {
+    background-color: #021839;
+}
